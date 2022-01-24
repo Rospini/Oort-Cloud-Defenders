@@ -8,9 +8,11 @@ const cellSize = 100;
 const cellGap = 3;
 const gameGrid=[];
 const defenders = [];
-let amountOfMoney = 300;
+let amountOfMoney = 350;
 const enemies = [];
 const enemiesPosition = [];
+const boss = [];
+const bossPosition= [];
 let enemiesInterval = 600;
 let frame = 0;
 let gameOver = false;
@@ -94,6 +96,13 @@ function handleProjectiles(){
         for(let j = 0; j < enemies.length; j++){
             if(enemies[j] && projectiles[i] && collision(projectiles[i], enemies[j])){
                 enemies[j].health -= projectiles[i].power;
+                projectiles.splice(i, 1);
+                i--;
+            }
+        }
+        for(let j = 0; j < boss.length; j++){
+            if(boss[j] && projectiles[i] && collision(projectiles[i], boss[j])){
+                boss[j].health -= projectiles[i].power;
                 projectiles.splice(i, 1);
                 i--;
             }
@@ -187,6 +196,7 @@ class Enemy {
         ctx.fillText(Math.floor(this.health), this.x + 20, this.y+30);
     }
 }
+
 function handleEnemies(){
     for (let i = 0; i< enemies.length; i++){
         enemies[i].update();
@@ -195,7 +205,7 @@ function handleEnemies(){
         gameOver = true;
     }
     if(enemies[i].health <= 0){
-        let earningMoney = enemies[i].maxHealth/10;
+        let earningMoney = enemies[i].maxHealth/4;
         amountOfMoney += earningMoney;
         score += earningMoney;
         const findEnemiesVerticalIndex = enemiesPosition.indexOf(enemies[i].y);
@@ -205,14 +215,59 @@ function handleEnemies(){
     }
     }   
     if(frame % enemiesInterval === 0){
+        console.log('enemie')
         let verticalPosition = Math.floor(Math.random()* 5 + 1) * cellSize;
         enemies.push(new Enemy(verticalPosition));
         enemiesPosition.push(verticalPosition)
-        if(enemiesInterval > 120) enemiesInterval -= 50;
+        if(enemiesInterval > 120) {
+            enemiesInterval -= 50
+        };
         
     }
 }
 //utilities
+
+class Boss {
+    constructor(){
+        this.x = canvas.width;
+        this.y = 100;
+        this.width = cellSize - cellGap * 2;
+        this.height = cellSize *5;
+        this.health = 1000;
+        this.speed = 0,4;
+        this.movement = this.speed;
+        this.maxHealth = this.health;
+    }
+    update (){
+        this.x -= this.movement;
+    }
+    draw(){
+        ctx.fillStyle = '#ba26d9',
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.fillStyle = 'blue';
+        ctx.font = "30px Arial";
+        ctx.fillText(Math.floor(this.health), this.x + 20, this.y+30);
+    }
+    
+}
+function spawnBoss(){
+    for (let i = 0; i< boss.length; i++){
+        boss[i].update();
+        boss[i].draw();
+    if(boss[i].x < 0){boss
+        gameOver = true;
+    }
+    if(boss[i].health <= 0){
+        let earningMoney = boss[i].maxHealth/4;
+        amountOfMoney += earningMoney;
+        score += earningMoney;
+        boss.splice(i, 1);
+        i--;
+        }
+    
+    }   
+    
+}
 function handleGameStatus(){
     ctx.fillStyle = 'gold';
     ctx.font = '30 px Arial';
@@ -226,7 +281,6 @@ function handleGameStatus(){
     }
 }
 
-
 function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle ='blue';
@@ -235,6 +289,12 @@ function animate(){
     handleDefenders();
     handleProjectiles();
     handleEnemies();
+    if(score >= 10 && boss.length <1 ){
+        console.log(boss)
+        boss.push(new Boss());
+        bossPosition.push();      
+    }
+    spawnBoss()
     handleGameStatus();
     frame ++;
     if (!gameOver)requestAnimationFrame(animate);    
@@ -254,3 +314,9 @@ function collision(first, second){
 window.addEventListener('resize', function(){
 canvasPosition = canvas.getBoundingClientRect();
 })
+
+//mvp1 boss that takes a whole row mith big amoung of life
+// get more difficultie with time growing enemies more health
+// 
+// 
+// ux 

@@ -160,6 +160,10 @@ function handleDefenders(){
 
 
 //enemies
+const enemyArmy = [];
+const flyingDot = new Image()
+flyingDot.src = "./images/flyingDot.png"
+enemyArmy.push(flyingDot);
 class Enemy {
     constructor(verticalPosition){
         this.x = canvas.width;
@@ -170,9 +174,20 @@ class Enemy {
         this.speed = Math.random()* 0.2 + 0.4;
         this.movement = this.speed;
         this.maxHealth = this.health;
+        this.enemyArmy = enemyArmy[0];
+        this.frameX = 0;
+        this.frameY = 0;
+        this.minFrame = 0;
+        this.maxFrame = 4;
+        this.spritewidth = 248;
+        this.spriteHeight =248;
     }
     update (){
         this.x -= this.movement;
+        if(frame % 8 === 0){
+            if(this.frameX < this.maxFrame) this.frameX ++;
+            else this.frameX = this.minFrame;
+        }
     }
     draw(){
         ctx.fillStyle = 'red',
@@ -180,6 +195,8 @@ class Enemy {
         ctx.fillStyle = 'blue';
         ctx.font = "30px Arial";
         ctx.fillText(Math.floor(this.health), this.x + 20, this.y+30);
+        //ctx.drawImage(img, sourceX, sourceY ,sourceW , sourceH, destinationX, destinationY, destinationH)
+        ctx.drawImage(this.enemyArmy, this.frameX * this.spritewidth, 0, this.spritewidth, this.spriteHeight, this.x, this.y, this.width, this.height)
     }
 }
 
@@ -219,13 +236,13 @@ class FloatingMessage{
         this. size = size;
         this.color = color;
         this.timer = 0;
-        this.fading = 1;     
+        this.fading = 2;     
         this.speed = speed
     } 
     update (){
             this.y -= 0.3;
             this.timer += this.speed;
-            if(this.fading > 0.8) this.fading -= 0.8;
+            if(this.fading > 0.3) this.fading -= 0.05;
     }
     draw(){
         ctx.globalAlpha= this.fading;

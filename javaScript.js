@@ -49,7 +49,7 @@ class Cell {
     }
     draw (){        
         if (mouse.x && mouse.y && collision(this, mouse)){
-            ctx.strokeStyle = 'black';
+            ctx.strokeStyle = 'gold';
             ctx.strokeRect(this.x, this.y, this.width, this.height);
         }       
     }   
@@ -114,6 +114,8 @@ function handleProjectiles(){
     }
 }
 //defenders
+const defender = new Image()
+defender.src = './images/defender.png'
 class Defender{
     constructor(x, y){
         this.x = x;
@@ -123,18 +125,30 @@ class Defender{
         this.health = 100;
         this.projectiles = [];
         this.timer = 0;
+        this.frameX = 0;
+        this.frameY = 0;
+        this.minFrame = 0;
+        this.maxFrame = 9;
+        this.spriteWidth = 130;
+        this.spriteHeight =130;
     }
     draw(){
-        ctx.fillStyle = 'blue',
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.fillStyle = 'gold';
+        //ctx.fillStyle = 'blue',
+        //ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.fillStyle = 'green';
         ctx.font = "30px Arial";
-        ctx.fillText(Math.floor(this.health), this.x + 20, this.y+30);
+        ctx.fillText(Math.floor(this.health), this.x + 20, this.y);
+        //ctx.drawImage(img, sourceX, sourceY ,sourceW , sourceH, destinationX, destinationY, destinationH)
+        ctx.drawImage(defender,this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height)
     }
     update(){
         this.timer++;
         if(this.timer % 100 === 0){
-            projectiles.push(new Projectile(this.x +60, this.y+60))
+            projectiles.push(new Projectile(this.x +60, this.y+60))           
+        }
+        if(frame % 10 === 0){
+            if(this.frameX < this.maxFrame) this.frameX ++;
+            else this.frameX = this.minFrame;
         }
     }
 }
@@ -161,9 +175,12 @@ function handleDefenders(){
 
 //enemies
 const enemyArmy = [];
-const flyingDot = new Image()
-flyingDot.src = "./images/flyingDot.png"
-enemyArmy.push(flyingDot);
+const rexato = new Image()
+rexato.src = "./images/rexato.png"
+const oneEye = new Image()
+oneEye.src = "./images/walkingEye.png"
+enemyArmy.push(rexato);//242
+enemyArmy.push(oneEye)// 
 class Enemy {
     constructor(verticalPosition){
         this.x = canvas.width;
@@ -174,13 +191,14 @@ class Enemy {
         this.speed = Math.random()* 0.2 + 0.4;
         this.movement = this.speed;
         this.maxHealth = this.health;
-        this.enemyArmy = enemyArmy[0];
+        this.enemyArmy = enemyArmy [Math.floor(Math.random()* enemyArmy.length)];
         this.frameX = 0;
         this.frameY = 0;
         this.minFrame = 0;
-        this.maxFrame = 4;
-        this.spritewidth = 248;
-        this.spriteHeight =248;
+        this.maxFrame = 7;
+        this.spriteWidth = 130;
+        this.spriteHeight =130;
+
     }
     update (){
         this.x -= this.movement;
@@ -190,13 +208,12 @@ class Enemy {
         }
     }
     draw(){
-        ctx.fillStyle = 'red',
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.fillStyle = 'blue';
+        //ctx.fillStyle = 'red',
+        //ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.fillStyle = 'gold';
         ctx.font = "30px Arial";
-        ctx.fillText(Math.floor(this.health), this.x + 20, this.y+30);
-        //ctx.drawImage(img, sourceX, sourceY ,sourceW , sourceH, destinationX, destinationY, destinationH)
-        ctx.drawImage(this.enemyArmy, this.frameX * this.spritewidth, 0, this.spritewidth, this.spriteHeight, this.x, this.y, this.width, this.height)
+        ctx.fillText(Math.floor(this.health), this.x + 20, this.y);
+        ctx.drawImage(this.enemyArmy, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height)
     }
 }
 
@@ -262,29 +279,52 @@ function handleFloatingMessages(){
         }
     }
 }
+let bossEncounter1 = new Image()
+bossEncounter1.src = './images/boss1.png'//228
+let bossEncounter2 = new Image()
+bossEncounter2.src = './images/boss2.png'//305
 class Boss {
     constructor(health, speed,){
         this.x = canvas.width;
         this.y = 100;
-        this.width = cellSize - cellGap * 2;
+        this.width = cellSize * 2;
         this.height = cellSize *5;
         this.health = health;
         this.speed = speed;
         this.movement = this.speed;
         this.maxHealth = this.health;
+        this.bossEncounter = bossEncounter1;
+        this.frameX = 0;
+        this.frameY = 0;
+        this.minFrame = 0;
+        this.maxFrame = 7;
+        this.spriteWidth = 228;
+        this.spriteHeight =228;
     }
     update (){
         this.x -= this.movement;
+        if(frame % 8 === 0){
+            if(this.frameX < this.maxFrame) this.frameX ++;
+            else this.frameX = this.minFrame;
+        }
     }
     draw(){
-        ctx.fillStyle = '#ba26d9',
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.fillStyle = 'blue';
+        // ctx.fillStyle = '#ba26d9',
+        // ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.fillStyle = 'red';
         ctx.font = "30px Arial";
-        ctx.fillText(Math.floor(this.health), this.x + 20, this.y+30);
+        ctx.fillText(Math.floor(this.health), this.x + 70, this.y+30);
+        if(score < 1200 ){
+            ctx.drawImage(bossEncounter1,this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight+50, this.x, this.y-40, this.width+60, this.height)
+        }
+        else if(score > 1200 ){
+            ctx.drawImage(bossEncounter2,this.frameX * (this.spriteWidth+77), 0, this.spriteWidth+77 , this.spriteHeight+77, this.x, this.y, this.width, this.height)
+        }
     }
-    
+        
 }
+    
+
 function spawnBoss(){
     for (let i = 0; i< boss.length; i++){
         boss[i].update();
@@ -310,7 +350,7 @@ function handleGameStatus(){
     ctx.fillText('Score' + score , 350, 55);
     if (gameOver == true){
         console.log("Game Over")
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = 'gold';
         ctx.font = "90px Arial";
         ctx.fillText('GAME OVER', 135, 330);
     }
@@ -336,8 +376,8 @@ canvas.addEventListener("click", function(){
 
 function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle ='blue';
-    ctx.fillRect(0, 0, controlsBar.width, controlsBar.height);
+    // ctx.fillStyle ='';
+    // ctx.fillRect(0, 0, controlsBar.width, controlsBar.height);
     handleGameGrid(); 
     handleDefenders();
     handleProjectiles();
@@ -346,7 +386,7 @@ function animate(){
         floatingMessages.push(new FloatingMessage('BOSS INCOMING', 450, 300, 50, 'red',0.2))
         boss.push(new Boss(1000, 0.4,));
     }
-    if(score / 1400 === 1 && boss.length <1 ){
+    if(score / 1700 === 1 && boss.length <1 ){
         floatingMessages.push(new FloatingMessage('FAST BOSS INCOMING', 450, 300, 50, 'red',0.2))
         boss.push(new Boss(1000, 4));   
     }

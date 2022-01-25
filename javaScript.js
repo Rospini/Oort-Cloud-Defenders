@@ -2,7 +2,6 @@ const canvas = document.getElementById('canvas1')
 const ctx = canvas.getContext('2d')
 canvas.width = 900;
 canvas.height = 600;
-
 // global variables
 const cellSize = 100;
 const cellGap = 3;
@@ -12,12 +11,12 @@ let amountOfMoney = 350;
 const enemies = [];
 const enemiesPosition = [];
 const boss = [];
-const bossPosition= [];
 let enemiesInterval = 600;
 let frame = 0;
 let gameOver = false;
 const projectiles = [];
 let score = 0;
+
 
 //mouse
 const mouse = {
@@ -140,20 +139,7 @@ class Defender{
     }
 }
 
-canvas.addEventListener("click", function(){
-    const gridPositionX = mouse.x - (mouse.x % cellSize) + cellGap;
-    const gridPositionY = mouse.y -(mouse.y % cellSize) + cellGap;
-    if(gridPositionY < cellSize) return;
-    for (let i =0; i<defenders.length; i++){
-        if(defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) 
-        return;
-    }
-    let defenderCost = 100;
-    if(amountOfMoney >= defenderCost){
-        defenders.push(new Defender(gridPositionX, gridPositionY));
-        amountOfMoney -= defenderCost;
-    }
-})
+
 function handleDefenders(){
     for(let i = 0; i< defenders.length; i++){
         defenders[i].draw();
@@ -215,26 +201,58 @@ function handleEnemies(){
     }
     }   
     if(frame % enemiesInterval === 0){
-        console.log('enemie')
         let verticalPosition = Math.floor(Math.random()* 5 + 1) * cellSize;
         enemies.push(new Enemy(verticalPosition));
         enemiesPosition.push(verticalPosition)
         if(enemiesInterval > 120) {
             enemiesInterval -= 50
         };
-        
     }
 }
 //utilities
-
+const floatingMessages = [];
+class FloatingMessage{
+    constructor(input, x, y, size, color, speed){
+        this.input = input;
+        this.x = x;
+        this.y = y;
+        this. size = size;
+        this.color = color;
+        this.timer = 0;
+        this.fading = 1;     
+        this.speed = speed
+    } 
+    update (){
+            this.y -= 0.3;
+            this.timer += this.speed;
+            if(this.fading > 0.8) this.fading -= 0.8;
+    }
+    draw(){
+        ctx.globalAlpha= this.fading;
+        ctx.fillStyle = this.color;
+        ctx.font = this.size +'Arial';
+        ctx.fillText(this.input, this.x, this.y)
+        ctx.globalAlpha = 1
+    }
+}
+function handleFloatingMessages(){
+    for(let i = 0; i < floatingMessages.length; i++){
+        floatingMessages[i].update();
+        floatingMessages[i].draw();
+        if(floatingMessages[i].timer >= 50){
+            floatingMessages.splice(i, 1);
+            i--;
+        }
+    }
+}
 class Boss {
-    constructor(){
+    constructor(health, speed,){
         this.x = canvas.width;
         this.y = 100;
         this.width = cellSize - cellGap * 2;
         this.height = cellSize *5;
-        this.health = 1000;
-        this.speed = 0,4;
+        this.health = health;
+        this.speed = speed;
         this.movement = this.speed;
         this.maxHealth = this.health;
     }
@@ -281,6 +299,24 @@ function handleGameStatus(){
     }
 }
 
+canvas.addEventListener("click", function(){
+    const gridPositionX = mouse.x - (mouse.x % cellSize) + cellGap;
+    const gridPositionY = mouse.y -(mouse.y % cellSize) + cellGap;
+    if(gridPositionY < cellSize) return;
+    for (let i =0; i<defenders.length; i++){
+        if(defenders[i].x === gridPositionX && defenders[i].y === gridPositionY) 
+        return;
+    }
+    let defenderCost = 100;
+    if(amountOfMoney >= defenderCost){
+        defenders.push(new Defender(gridPositionX, gridPositionY));
+        amountOfMoney -= defenderCost;
+    }
+    else{
+        floatingMessages.push(new FloatingMessage('need more Cash $$$', mouse.x ,mouse.y ,25,'blue',1))
+    }
+})
+
 function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle ='blue';
@@ -289,13 +325,17 @@ function animate(){
     handleDefenders();
     handleProjectiles();
     handleEnemies();
-    if(score >= 10 && boss.length <1 ){
-        console.log(boss)
-        boss.push(new Boss());
-        bossPosition.push();      
+    if(score / 700 === 1 && boss.length <1 ){
+        floatingMessages.push(new FloatingMessage('BOSS INCOMING', 450, 300, 50, 'red',0.2))
+        boss.push(new Boss(1000, 0.4,));
+    }
+    if(score / 1400 === 1 && boss.length <1 ){
+        floatingMessages.push(new FloatingMessage('FAST BOSS INCOMING', 450, 300, 50, 'red',0.2))
+        boss.push(new Boss(1000, 4));   
     }
     spawnBoss()
     handleGameStatus();
+    handleFloatingMessages();
     frame ++;
     if (!gameOver)requestAnimationFrame(animate);    
 }

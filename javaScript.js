@@ -141,8 +141,8 @@ class Defender{
         this.spriteWidth = 130;
         this.spriteHeight = 130;
         this.pickedDefender = pickDefender;
-        this.power1 = 10
-        this.power2 = 40
+        this.power1 = 15
+        this.power2 = 50
     }
     draw(){
         //ctx.fillStyle = 'blue',
@@ -209,7 +209,7 @@ class Roots{
         this.maxFrame = 7;
         this.spriteWidth = 130;
         this.spriteHeight =130;
-        this.generateMoney = 5;
+        this.generateMoney = 25;
     }
     draw(){
         //ctx.fillStyle = 'blue',

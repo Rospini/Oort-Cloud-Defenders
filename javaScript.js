@@ -545,11 +545,11 @@ function animate(){
     chooseDefender();
     if(score / 700 === 1 && boss.length <1 ){
         floatingMessages.push(new FloatingMessage('BOSS INCOMING', 450, 300, 50, 'red',0.2))
-        boss.push(new Boss(1000, 0.4,));
+        boss.push(new Boss(4000, 0.4,));
     }
     if(score / 1800 === 1 && boss.length <1 ){
         floatingMessages.push(new FloatingMessage('FAST BOSS INCOMING', 450, 300, 50, 'red',0.2))
-        boss.push(new Boss(1400, 4));   
+        boss.push(new Boss(3400, 4));   
     }
     spawnBoss()
     handleGameStatus();

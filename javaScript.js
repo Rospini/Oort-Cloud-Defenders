@@ -296,20 +296,34 @@ function chooseDefender(){
     }
     
     ctx.lineWidth = 1;
-    ctx.fillStyle = 'rgba(0,0,0,0.2)';
+    ctx.fillStyle = 'gold';
+    ctx.font = "20px Arial";
+    ctx.fillText('100', choose1.x+20, choose1.y+90)
+    ctx.fillStyle = 'rgba(0,0,0,0)'
     ctx.fillRect(choose1.x, choose1.y, choose1.width, choose1.width);
     ctx.strokeStyle = choose1stroke;
     ctx.strokeRect(choose1.x,choose1.y,choose1.width,choose1.height)
     ctx.drawImage(defender1, 0, 0, 130, 130,choose1.x,choose1.y+4,130/2,130/2);
 
+    
     ctx.fillRect(choose2.x, choose2.y, choose2.width, choose2.width);
     ctx.strokeStyle = choose2stroke;
+    ctx.fillStyle = 'gold'
+    ctx.font = "20px Arial";
+    ctx.fillText('400', choose2.x+20, choose2.y+90)
+    ctx.fillStyle = 'rgba(0,0,0,0)'
     ctx.strokeRect(choose2.x,choose2.y,choose2.width,choose2.height)
+    
     ctx.drawImage(defender2, 0, 0, 130, 130,choose2.x,choose2.y+4,130/2,130/2);
 
     ctx.fillRect(choose3.x, choose3.y, choose3.width, choose3.width);
     ctx.strokeStyle = choose3stroke;
+    ctx.fillStyle = 'gold'
+    ctx.font = "20px Arial";
+    ctx.fillText('150', choose3.x+20, choose3.y+90)
+    ctx.fillStyle = 'rgba(0,0,0,0)'
     ctx.strokeRect(choose3.x,choose3.y,choose3.width,choose3.height)
+    
     ctx.drawImage(rooting, choose3.x, 0, 130, 130,choose3.x-4,choose3.y+8,130/2,130/2);
 }
 

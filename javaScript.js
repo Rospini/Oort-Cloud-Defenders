@@ -1,7 +1,7 @@
 const canvas = document.getElementById('canvas1')
 const ctx = canvas.getContext('2d')
-canvas.width = 900;
-canvas.height = 600;
+canvas.width = 1000;
+canvas.height = 700;
 // global variables
 const cellSize = 100;
 const cellGap = 3;
@@ -30,9 +30,9 @@ canvas.addEventListener("mousemove", function(e){
     mouse.x = e.x - canvasPosition.left;
     mouse.y = e.y - canvasPosition.top;
 });
-canvas.addEventListener('mouseleave', function(){
-    mouse.x = undefined;
-    mouse.y = undefined;
+    canvas.addEventListener('mouseleave', function(){
+        mouse.x = undefined;
+        mouse.y = undefined;
 });
 
 //game board
@@ -55,7 +55,7 @@ class Cell {
     }   
 }
 function createGrid(){
-    for(let y = cellSize; y < canvas.height; y+= cellSize){
+    for(let y = cellSize; y < canvas.height; y += cellSize){
         for(let x = 0; x < canvas.width; x += cellSize){
             gameGrid.push(new Cell(x, y));
         }
@@ -235,7 +235,7 @@ function handleEnemies(){
     }
     }   
     if(frame % enemiesInterval === 0){
-        let verticalPosition = Math.floor(Math.random()* 5 + 1) * cellSize;
+        let verticalPosition = Math.floor(Math.random()* 6 + 1) * cellSize;
         enemies.push(new Enemy(verticalPosition));
         enemiesPosition.push(verticalPosition)
         if(enemiesInterval > 120) {
@@ -407,7 +407,6 @@ function collision(first, second){
         return true;
     }
 }
-
 window.addEventListener('resize', function(){
 canvasPosition = canvas.getBoundingClientRect();
 })

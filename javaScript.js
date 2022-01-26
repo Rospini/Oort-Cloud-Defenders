@@ -386,9 +386,9 @@ function animate(){
         floatingMessages.push(new FloatingMessage('BOSS INCOMING', 450, 300, 50, 'red',0.2))
         boss.push(new Boss(1000, 0.4,));
     }
-    if(score / 1700 === 1 && boss.length <1 ){
+    if(score / 1800 === 1 && boss.length <1 ){
         floatingMessages.push(new FloatingMessage('FAST BOSS INCOMING', 450, 300, 50, 'red',0.2))
-        boss.push(new Boss(1000, 4));   
+        boss.push(new Boss(1400, 4));   
     }
     spawnBoss()
     handleGameStatus();

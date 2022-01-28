@@ -64,7 +64,7 @@ class Cell {
     }
     draw (){        
         if (mouse.x && mouse.y && collision(this, mouse)){
-            ctx.strokeStyle = 'gold';
+            ctx.strokeStyle = 'rgba(205, 250, 6, 0.973)';
             ctx.strokeRect(this.x, this.y, this.width, this.height);
         }       
     }   
@@ -133,13 +133,13 @@ function easter(){
     }
 }
 function handleGameStatus(){
-    ctx.fillStyle = 'gold';
+    ctx.fillStyle = 'rgba(205, 250, 6, 0.973)';
     ctx.font = '30 px Arial';
     ctx.fillText('Cash:' + amountOfMoney + '$', 20, 55);
     ctx.fillText('Score' + score , 350, 55);
     if (gameOver == true){
         console.log("Game Over")
-        ctx.fillStyle = 'gold';
+        ctx.fillStyle = 'rgba(205, 250, 6, 0.973)';
         ctx.font = "90px Arial";
         ctx.fillText('GAME OVER', 135, 330);
     }
@@ -163,7 +163,7 @@ canvas.addEventListener("click", function(){
             amountOfMoney -= defenderCost;
         }
         else{
-            floatingMessages.push(new FloatingMessage('need more Cash $$$', mouse.x ,mouse.y ,25,'gold',1))
+            floatingMessages.push(new FloatingMessage('need more Cash $$$', mouse.x ,mouse.y ,25,'rgba(205, 250, 6, 0.973)',1))
         }
     }
     if(pickDefender === 2){
@@ -172,7 +172,7 @@ canvas.addEventListener("click", function(){
             defenders.push(new Defender(gridPositionX, gridPositionY,pickDefender));
             amountOfMoney -= defenderCost;
         }else{
-            floatingMessages.push(new FloatingMessage('need more Cash $$$', mouse.x ,mouse.y ,25,'gold',1))
+            floatingMessages.push(new FloatingMessage('need more Cash $$$', mouse.x ,mouse.y ,25,'rgba(205, 250, 6, 0.973)',1))
         }
     }
     if(pickDefender === 3){
@@ -181,7 +181,7 @@ canvas.addEventListener("click", function(){
             defenders.push(new Roots(gridPositionX, gridPositionY));
             amountOfMoney -= rootsCost;
         }else{
-            floatingMessages.push(new FloatingMessage('need more Cash $$$', mouse.x ,mouse.y ,25,'gold',1))
+            floatingMessages.push(new FloatingMessage('need more Cash $$$', mouse.x ,mouse.y ,25,'rgba(205, 250, 6, 0.973)',1))
         }
     }
 })
@@ -204,7 +204,7 @@ function animate(){
     }
     if((score+25) % 2200 === 0 && boss.length <1 ){
         floatingMessages.push(new FloatingMessage('FAST BOSS INCOMING', 450, 300, 50, 'red',0.2))
-        boss.push(new Boss(score*2, 4));   
+        boss.push(new Boss(score*2, 1));   
     }
     spawnBoss()
     handleGameStatus();

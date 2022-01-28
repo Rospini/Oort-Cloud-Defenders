@@ -103,7 +103,7 @@ class Roots{
         this.timer++;
         if(this.timer % 100 === 0){
             amountOfMoney += this.generateMoney;    
-            floatingMessages.push(new FloatingMessage(this.generateMoney+'$', this.x+15 ,this.y+50 ,25,'gold',1))
+            floatingMessages.push(new FloatingMessage(this.generateMoney+'$', this.x+15 ,this.y+50 ,25,'rgba(205, 250, 6, 0.973)',1))
         }
         if(frame % 10 === 0){
             if(this.frameX < this.maxFrame) this.frameX ++;
@@ -154,19 +154,19 @@ function chooseDefender(){
         pickDefender = 3;
     }
     if(pickDefender ===1){
-        choose1stroke = 'gold'
+        choose1stroke = 'rgba(205, 250, 6, 0.973)'
         choose2stroke = 'red'
         choose3stroke = 'red'
     }
     else if(pickDefender === 2){
         choose1stroke = 'red'
-        choose2stroke = 'gold'
+        choose2stroke = 'rgba(205, 250, 6, 0.973)'
         choose3stroke = 'red'
     }
     else if(pickDefender === 3){
         choose1stroke = 'red'
         choose2stroke = 'red'
-        choose3stroke = 'gold'
+        choose3stroke = 'rgba(205, 250, 6, 0.973)'
     }
     else{
             choose1stroke = 'red'
@@ -175,7 +175,7 @@ function chooseDefender(){
     }
     
     ctx.lineWidth = 1;
-    ctx.fillStyle = 'gold';
+    ctx.fillStyle = 'rgba(205, 250, 6, 0.973)';
     ctx.font = "20px Arial";
     ctx.fillText('100$', choose1.x+15, choose1.y+90)
     ctx.fillStyle = 'green';
@@ -190,7 +190,7 @@ function chooseDefender(){
     
     ctx.fillRect(choose2.x, choose2.y, choose2.width, choose2.width);
     ctx.strokeStyle = choose2stroke;
-    ctx.fillStyle = 'gold'
+    ctx.fillStyle = 'rgba(205, 250, 6, 0.973)'
     ctx.font = "20px Arial";
     ctx.fillText('400$', choose2.x+15, choose2.y+90)
     ctx.fillStyle = 'green';
@@ -203,7 +203,7 @@ function chooseDefender(){
     
     ctx.fillRect(choose3.x, choose3.y, choose3.width, choose3.width);
     ctx.strokeStyle = choose3stroke;
-    ctx.fillStyle = 'gold'
+    ctx.fillStyle = 'rgba(205, 250, 6, 0.973)'
     ctx.font = "20px Arial";
     ctx.fillText('150$', choose3.x+15, choose3.y+90)
     ctx.fillStyle = 'green';

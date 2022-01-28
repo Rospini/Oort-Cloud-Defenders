@@ -1,16 +1,22 @@
+@font-face { font-family: space; src: url('./font/space-mission-font/SpaceMission-rgyw9.otf'); } 
+@font-face { font-family: space; font-weight: bold; src: url('./font/space-mission-font/SpaceMission-rgyw9.otf'); } 
+@font-face { font-family: space2; src: url('./font/agelast-font/Agelast-mLlAm.otf') ;} 
+@font-face { font-family: space2; font-weight: bold; src: url('./font/agelast-font/Agelast-mLlAm.otf'); } 
 body{
     background: rgb(0, 8, 0)
 }
 h1{
+    font-family: space ;
     align-items: center;
     margin-top: 2%;
-    color:blanchedalmond;
+    color:rgb(16, 236, 53);
     position: absolute;
-    margin-left: 30%;
+    margin-left: 35%;
     font-size: 60px;
     
 }
 #info{
+    font-family: space2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -20,9 +26,10 @@ h1{
     display: flex;
     align-items: center;
     vertical-align: middle ;
-    color: blanchedalmond;
+    color: rgba(205, 250, 6, 0.973);
     margin-top: 3%;
     margin-left:5% ;
+    font-size: smaller;
 }
 #gif{
     align-items: center;

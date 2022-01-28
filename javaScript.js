@@ -23,7 +23,7 @@ let score = 0;
 const rooots= [];
 let pickDefender = 0;
 const deadEnemies = []
-
+let enemiesHealth = 100
 
 //mouse
 const mouse = {
@@ -198,6 +198,9 @@ function animate(){
     handleEnemies();
     handleDeath()
     chooseDefender();
+    if((score+25) % 1200 === 0 && boss.length <1  ){
+        enemiesHealth += 200
+    };
     if((score+25) % 800 === 0 && boss.length <1  ){
         floatingMessages.push(new FloatingMessage('BOSS INCOMING', 450, 300, 50, 'red',0.2))
         boss.push(new Boss(score*4, 0.4,));
@@ -212,7 +215,12 @@ function animate(){
     easter()
     frame ++;
     if (!gameOver)requestAnimationFrame(animate);        
-    
+    if (score > 10000){
+        ctx.fillStyle = 'rgba(205, 250, 6, 0.973)';
+        ctx.font = "90px space2";
+        ctx.fillText('your Score:' + score, 135, 330);
+        requestAnimationFrame(animate);   
+    }
 }
 animate();
 

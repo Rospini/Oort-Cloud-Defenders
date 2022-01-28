@@ -108,7 +108,7 @@ class FloatingMessage{
     draw(){
         ctx.globalAlpha= this.fading;
         ctx.fillStyle = this.color;
-        ctx.font = this.size +'Arial';
+        ctx.font = this.size +'space2';
         ctx.fillText(this.input, this.x, this.y)
         ctx.globalAlpha = 1
     }
@@ -134,13 +134,13 @@ function easter(){
 }
 function handleGameStatus(){
     ctx.fillStyle = 'rgba(205, 250, 6, 0.973)';
-    ctx.font = '30 px Arial';
+    ctx.font = '30 px space2';
     ctx.fillText('Cash:' + amountOfMoney + '$', 20, 55);
     ctx.fillText('Score' + score , 350, 55);
     if (gameOver == true){
         console.log("Game Over")
         ctx.fillStyle = 'rgba(205, 250, 6, 0.973)';
-        ctx.font = "90px Arial";
+        ctx.font = "90px space2";
         ctx.fillText('GAME OVER', 135, 330);
     }
     else if(amountOfMoney  > score+1000){

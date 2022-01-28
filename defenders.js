@@ -27,7 +27,7 @@ class Defender{
         //ctx.fillStyle = 'blue',
         //ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.fillStyle = 'green';
-        ctx.font = "30px Arial";
+        ctx.font = "30px space2";
         ctx.fillText(Math.floor(this.health), this.x + 20, this.y);
         //ctx.drawImage(img, sourceX, sourceY ,sourceW , sourceH, destinationX, destinationY, destinationH)
         if(this.pickedDefender === 1){
@@ -94,7 +94,7 @@ class Roots{
         //ctx.fillStyle = 'blue',
         //ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.fillStyle = 'green';
-        ctx.font = "30px Arial";
+        ctx.font = "30px space2";
         ctx.fillText(Math.floor(this.health), this.x + 20, this.y);
         //ctx.drawImage(img, sourceX, sourceY ,sourceW , sourceH, destinationX, destinationY, destinationH)
         ctx.drawImage(rooting,this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height)
@@ -176,10 +176,10 @@ function chooseDefender(){
     
     ctx.lineWidth = 1;
     ctx.fillStyle = 'rgba(205, 250, 6, 0.973)';
-    ctx.font = "20px Arial";
+    ctx.font = "20px space2";
     ctx.fillText('100$', choose1.x+15, choose1.y+90)
     ctx.fillStyle = 'green';
-    ctx.font = "15px Arial";
+    ctx.font = "15px space2";
     ctx.fillText('100HP', choose1.x+10, choose1.y+12)
     ctx.fillStyle = 'rgba(0,0,0,0)'
     ctx.fillRect(choose1.x, choose1.y, choose1.width, choose1.width);
@@ -191,10 +191,10 @@ function chooseDefender(){
     ctx.fillRect(choose2.x, choose2.y, choose2.width, choose2.width);
     ctx.strokeStyle = choose2stroke;
     ctx.fillStyle = 'rgba(205, 250, 6, 0.973)'
-    ctx.font = "20px Arial";
+    ctx.font = "20px space2";
     ctx.fillText('400$', choose2.x+15, choose2.y+90)
     ctx.fillStyle = 'green';
-    ctx.font = "15px Arial";
+    ctx.font = "15px space2";
     ctx.fillText('100HP', choose2.x+10, choose2.y+12)
     ctx.fillStyle = 'rgba(0,0,0,0)'
     ctx.strokeRect(choose2.x,choose2.y,choose2.width,choose2.height)
@@ -204,10 +204,10 @@ function chooseDefender(){
     ctx.fillRect(choose3.x, choose3.y, choose3.width, choose3.width);
     ctx.strokeStyle = choose3stroke;
     ctx.fillStyle = 'rgba(205, 250, 6, 0.973)'
-    ctx.font = "20px Arial";
+    ctx.font = "20px space2";
     ctx.fillText('150$', choose3.x+15, choose3.y+90)
     ctx.fillStyle = 'green';
-    ctx.font = "15px Arial";
+    ctx.font = "15px space2";
     ctx.fillText('500HP', choose3.x+10, choose3.y+12)
     ctx.fillStyle = 'rgba(0,0,0,0)'
     ctx.strokeRect(choose3.x,choose3.y,choose3.width,choose3.height)

@@ -5,11 +5,43 @@
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./stylesheet.css">
-    <title>Tower Defenders first game</title>
+    <title>OORT CLOUD DEFENDERS</title>
 </head>
-<body>
-        <canvas id="canvas1" width = "1000" height="700"></canvas>
-
+<body id = 'body'>
+    <h1>OORT CLOUD DEFENDERS</h1>
+    <div id='info'>   
+        <img class = "gif" src="images/SpaceMan_jump.gif" alt="SpaceMan jumping">
+        <h2>Siegfried</h2>
+        <p>
+            is able to be your first choice to Fight in the beginning,
+            he is cheap but can fight one enemy along the line.
+            he costs 100$ has 100 Health and deals ok damage.
+        </p>
+        <img class = "gif" src="images/BlueGirl_run.gif" alt="BlueGirl run">
+        <h2>Helena</h2>
+        <p>
+            
+            is your main choice to deal the damage. if you need to fight more than 1 enemy on a line go with her.
+            She costs 400$ has 100 Health and deals a lot of Damage.
+        </p>
+        <img class = "gif" src="images/treeTop_jump.gif" alt="treeTop jumping">
+        <h2>Cedar</h2>
+        <p>
+            
+            he generates you good money and also can tank a good amount of damage.
+            He is too busy generating money and staying on his place so he forgets to fight in the end.
+            It costs 150$ has 500 health and deals no damage.
+        </p>
+    </div>
+        <canvas id="canvas1" width = "1000" height="700"></canvas> 
+        <script src="./projectiles.js"></script>    
+        <script src="./defenders.js"></script> 
+        <script src="./enemies.js"></script> 
+        <script src="./bosses.js"></script>   
         <script src="./javaScript.js"></script>
+        <audio controls autoplay>
+            <source src="./images/intro.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+          </audio>
 </body>
 </html>

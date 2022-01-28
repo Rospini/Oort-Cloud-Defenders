@@ -2,6 +2,9 @@ const canvas = document.getElementById('canvas1')
 const ctx = canvas.getContext('2d')
 canvas.width = 1000;
 canvas.height = 700;
+let backgroundSound = new Audio("./images/sound.mp3")
+backgroundSound.volume = 0.2
+backgroundSound.play ()
 // global variables
 const cellSize = 100;
 const cellGap = 3;

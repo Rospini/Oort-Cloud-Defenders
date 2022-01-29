@@ -24,7 +24,7 @@ const rooots= [];
 let pickDefender = 0;
 const deadEnemies = []
 let enemiesHealth = 100
-
+let win = false
 //mouse
 const mouse = {
     x: undefined,
@@ -143,6 +143,15 @@ function handleGameStatus(){
         ctx.font = "90px space2";
         ctx.fillText('GAME OVER', 135, 330);
     }
+    if(score > 6000){
+        win = true
+    }
+    if (win == true){
+        ctx.fillStyle = 'rgba(205, 250, 6, 0.973)';
+        ctx.font = "50px space2";
+        ctx.fillText('You Saved the Oort Cloud!', 135, 330);
+        ctx.fillText('Thank you!!!!', 135, 430);
+    }
     else if(amountOfMoney  > score+1000){
         //easter Egg gif
     } 
@@ -198,14 +207,14 @@ function animate(){
     handleEnemies();
     handleDeath()
     chooseDefender();
-    if((score+25) % 1200 === 0 && boss.length <1  ){
-        enemiesHealth += 200
+    if((frame+25) % 2000 === 0){
+        enemiesHealth += 20
     };
-    if((score+25) % 800 === 0 && boss.length <1  ){
+    if((frame+25) % 8000 === 0 ){
         floatingMessages.push(new FloatingMessage('BOSS INCOMING', 450, 300, 50, 'red',0.2))
         boss.push(new Boss(score*4, 0.4,));
     }
-    if((score+25) % 2200 === 0 && boss.length <1 ){
+    if((frame+25) % 12000 === 0 ){
         floatingMessages.push(new FloatingMessage('FAST BOSS INCOMING', 450, 300, 50, 'red',0.2))
         boss.push(new Boss(score*2, 1));   
     }
@@ -214,13 +223,7 @@ function animate(){
     handleFloatingMessages();
     easter()
     frame ++;
-    if (!gameOver)requestAnimationFrame(animate);        
-    if (score > 10000){
-        ctx.fillStyle = 'rgba(205, 250, 6, 0.973)';
-        ctx.font = "90px space2";
-        ctx.fillText('your Score:' + score, 135, 330);
-        requestAnimationFrame(animate);   
-    }
+    if (!gameOver)requestAnimationFrame(animate);           
 }
 animate();
 

@@ -43,4 +43,10 @@ h1{
     height: 700px;
     background-image: url("./images/inside_the_spaceship_2048x1536_000.png");
 }
+#easter{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+}
 

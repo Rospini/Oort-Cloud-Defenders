@@ -70,6 +70,17 @@ function handleDefenders(){
                 enemies[j].movement = enemies[j].speed;
             }
         }
+        for(let j = 0; j< boss.length; j++){
+            if(defenders[i] && collision(defenders[i], boss[j])){
+                boss[j].movement = 0;
+                defenders[i].health -= 1;
+            }
+            if(defenders[i] && defenders[i].health <= 0){
+                defenders.splice(i, 1);
+                i--;
+                boss[j].movement = boss[j].speed;
+            }
+        }
     }
 }
 const rooting = new Image()
@@ -127,6 +138,17 @@ function handleRoots(){
                 i--;
                 enemies[j].movement = enemies[j].speed;
                 
+            }
+            for(let j = 0; j< boss.length; j++){
+                if(rooots[i] && collision(rooots[i], boss[j])){
+                    boss[j].movement = 0;
+                    rooots[i].health -= 1;
+                }
+                if(rooots[i] && rooots[i].health <= 0){
+                    rooots.splice(i, 1);
+                    i--;
+                    boss[j].movement = boss[j].speed;
+                }
             }
         }
     }

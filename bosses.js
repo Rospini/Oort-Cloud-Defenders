@@ -3,13 +3,13 @@ bossEncounter1.src = './images/boss1.png'//228
 let bossEncounter2 = new Image()
 bossEncounter2.src = './images/boss2.png'//305
 class Boss {
-    constructor(health, speed,){
+    constructor(health, movementSpeed,){
         this.x = canvas.width;
-        this.y = 100;
+        this.y = Math.floor(Math.random()* 2 + 1) * cellSize;
         this.width = cellSize * 2;
         this.height = cellSize *5;
         this.health = health;
-        this.speed = speed;
+        this.speed = movementSpeed;
         this.movement = this.speed;
         this.maxHealth = this.health;
         this.bossEncounter = bossEncounter1;

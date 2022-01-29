@@ -45,9 +45,9 @@ class Enemy {
     draw(){
         //ctx.fillStyle = 'red',
         //ctx.fillRect(this.x, this.y, this.width, this.height);
-        // ctx.fillStyle = 'gold';
-        // ctx.font = "30px Arial";
-        // ctx.fillText(Math.floor(this.health), this.x + 20, this.y);
+        //  ctx.fillStyle = 'gold';
+        //  ctx.font = "30px Arial";
+        //  ctx.fillText(Math.floor(this.health), this.x + 20, this.y);
         ctx.drawImage(this.enemyArmy, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height)
     }
     // draw Death currently isnt working uses handleDeath line 91

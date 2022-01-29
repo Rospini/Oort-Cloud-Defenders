@@ -5,8 +5,10 @@ class Projectile{
     constructor(x, y,power){
         this.x = x,
         this.y = y;
-        this.width = cellSize;
-        this.height = cellSize;
+        this.width = 10;
+        this.height = 10;
+        this.frameWidth = cellSize;
+        this.frameHeight = cellSize;
         this.speed = 5;
         this.damage = power;
         this.frameX = 0;
@@ -28,7 +30,7 @@ class Projectile{
         // ctx.beginPath();
         // ctx.arc(this.x, this.y, this.width, 0, Math.PI *2);
         // ctx.fill();
-        ctx.drawImage(projectilePic, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y-45, this.width, this.height)
+        ctx.drawImage(projectilePic, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y-45, this.frameWidth, this.frameHeight)
     }
 }
 function handleProjectiles(){
